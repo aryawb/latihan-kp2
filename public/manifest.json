@@ -1,0 +1,17 @@
+{
+    "name": "Aplikasi Sosmed",
+    "short_name": "LB",
+    "start_url": "/latihan-kp2/public",
+    "background_color": "#03a9f4",
+    "description": "Aplikasi Sosmed Arya",
+    "display": "fullscreen",
+    "theme_color": "#03a9f4",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
