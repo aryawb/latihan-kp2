@@ -1,7 +1,7 @@
 @extends('layout.head')	
 @section('content')
 <main class="main">
-	<div class="container-fluid main-box px-4 py-3">
+	<div class="container-fluid main-box px-4 py-2">
 		<div class="row align-items-center">
 			<a href="/dashboard/{{$data->id}}">
 				<i class="uil uil-arrow-left back-edit"></i>
@@ -63,34 +63,67 @@
 							<div class="row">
 								<div class="col-xl-12">
 									<div class="form-group">
-										<label for="">Bio</label>
-										<textarea name="bio" class="form-control" id="" cols="10" rows="5">{{$ubah->bio}}</textarea>
+										<label for="" class="box-limit-edit">Bio <span id="detaillimit">Teks terlalu panjang!</span>
+											<span id='showdetail'>Tambahkan setidaknya 60 karakter</span></label>
+											<textarea name="bio" class="form-control" id="my-text" cols="10" rows="5" placeholder="Tambahkan setidaknya 60 karakter">{{$ubah->bio}}</textarea>
+											<div class="limit-bio">	
+
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="action-edit">
-								<input type="submit" class="btn btn-edit" value="Update Data">
-							</div>
-						</form>
-						@endforeach
+								<div class="action-edit">
+									<input type="submit" class="btn btn-edit" id="btnedit" value="Update Data">
+									<p id="result"></p>
+								</div>
+							</form>
+							@endforeach
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</main>
-<script>
-	$('#inputGroupFile01').on('change',function(){
+	</main>
+	<script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script>
+	<script>
+		$('#inputGroupFile01').on('change',function(){
                 //get the file name
                 var file_profile = $(this).val();
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(file_profile);
             })
-	$('#inputGroupFile02').on('change',function(){
+		$('#inputGroupFile02').on('change',function(){
                 //get the file name
                 var file_sampul = $(this).val();
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(file_sampul);
             })
-        </script>
-        @endsection
+		var myText = document.getElementById("my-text");
+		var result = document.getElementById("result");
+		var limit = 60;
+		result.textContent = 0 + "/" + limit;
+
+		myText.addEventListener("input",function(){
+			var textLength = myText.value.length;
+			result.textContent = textLength + "/" + limit;
+
+			if(textLength > limit){
+				// myText.setAttribute("maxlength", "60");
+				myText.style.cssText = "border-color: #ff2851; box-shadow: 0 0 0 0.06rem #ff2851;";
+			// myText.style.boxShadow = "0 0 0 .2rem #ff2851";
+			result.style.color = "#ff2851";
+			detaillimit.style.cssText = "display: block; color: #ff2851";
+			showdetail.style.cssText = "display: none;";
+			btnedit.setAttribute("disabled", "disabled");
+
+		}else{
+			btnedit.removeAttribute("disabled", "disabled");
+			detaillimit.style.cssText = "display: none;";
+			showdetail.style.cssText = "display: none;";
+			myText.style.borderColor = "#b2b2b2";
+			myText.style.cssText = "border-color: #ced4da; box-shadow: none";
+			result.style.color = "#737373";
+		}
+	});
+</script>
+@endsection

@@ -1,12 +1,13 @@
 @extends('layout.head')	
 @section('content')
-<main class="main" data-spy="scroll" data-target="#navbarExample" data-offset="50">
+<!-- data-spy="scroll" data-target="#navbarExample" data-offset="50" -->
+<main class="main" >
 	<div class="container-fluid">
 		<div class="row justify-content-center align-items-center">
 			<div class="box-post">
 				<div class="d-flex align-items-center">
 					
-					<a href="/dashboard/{{$data->id}}">
+					<a href="/dashboard/{{$user->id}}">
 						<i class="uil uil-arrow-left"></i>
 					</a>
 
@@ -39,9 +40,6 @@
 		</div>
 	</div>
 </main>
-<script>
-	var scroll = new SmoothScroll('a[href*="#"]');
-</script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>

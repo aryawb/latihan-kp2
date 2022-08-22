@@ -1,9 +1,9 @@
 {
-    "name": "Aplikasi Sosmed",
-    "short_name": "LB",
-    "start_url": "/latihan-kp2/public",
+    "name": "Aplikasi Karyawan",
+    "short_name": "Aplikasi Karyawan",
+    "start_url": "tugasarya.burningroom.co.id",
     "background_color": "#03a9f4",
-    "description": "Aplikasi Sosmed Arya",
+    "description": "Aplikasi Karyawan Arya",
     "display": "fullscreen",
     "theme_color": "#03a9f4",
     "icons": [

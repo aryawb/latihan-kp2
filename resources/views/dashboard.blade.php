@@ -124,19 +124,25 @@
 									</div>
 								</div>
 							</div>
+
 						</div>
-					</div>
-					<div class="action-profile">
-						@if(Auth::user())
-						<a href="/pegawai/ubah/{{$data->id}}" class="btn btn-profile bg-light"><i class="uil uil-edit"></i>&nbsp;Edit Profile</a>
-						@else
-						<a href="/pegawai/ubah/{{$data->id}}" class="d-none btn btn-profile bg-light"><i class="uil uil-edit"></i>&nbsp;Edit Profile</a>
-						@endif
-						<!-- <a class="btn btn-sampul"><i class="uil uil-camera"></i>&nbsp;Edit Foto Sampul</a> -->
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- <div class="action-profile">
+			@if(Auth::user())
+			<a href="/pegawai/ubah/{{$data->id}}" class="btn btn-profile bg-light"><i class="uil uil-edit"></i>&nbsp;Edit Profile</a>
+			@else
+			<a href="/pegawai/ubah/{{$data->id}}" class="d-none btn btn-profile bg-light"><i class="uil uil-edit"></i>&nbsp;Edit Profile</a>
+			@endif
+			<a class="btn btn-sampul"><i class="uil uil-camera"></i>&nbsp;Edit Foto Sampul</a>
+		</div> -->
+		@if(Auth::user())
+		<a href="/pegawai/ubah/{{$data->id}}" class="btn btn-profile bg-light action-profile"><i class="uil uil-edit"></i>&nbsp;Edit Profile</a>
+		@else
+		<a href="/pegawai/ubah/{{$data->id}}" class="d-none btn btn-profile bg-light action-profile"><i class="uil uil-edit"></i>&nbsp;Edit Profile</a>
+		@endif
 	</div>
 </div>
 </div>
@@ -204,13 +210,14 @@
 							<div id="home" class="tab-pane active">
 								<div class="body-post flex-wrap" >
 									@foreach($imageData as $data)
-									<div class="post-foto" id="navbarExample">
-										<a href="/post/view/{{$data->created_by}}#{{$data->id}}" data-target="#{{$data->id}}">
+									<div class="post-foto">
+										<a href="/post/view/{{$data->created_by}}#{{$data->id}}" >
 											<img src="{{ Storage::url('images/' .$data->data_file)}}" alt="" class="img-fluid">
 										</a>
 									</div>
+									<!-- id="navbarExample" -->
 									@endforeach
-
+									<!-- data-target="#{{$data->id}}" -->
 						<!-- <div class="post-foto">
 							<a href="/post">
 								<img src="{{asset('img/profile.jpg')}}" alt="" class="img-fluid">
@@ -244,8 +251,8 @@
 			<div class="modal-body">
 				<div class="row align-items-center flex-column">					
 					<!-- {!! QrCode::size(250)->generate(Request::url()); !!} -->
-					{!! $qr !!}
-					<a href="{{ asset('images/qrcode.svg') }}" download class="btn btn-primary btn-lg mt-3">Download</a>
+					<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(290)->generate(Request::url())) !!} ">
+					<a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(290)->generate(Request::url())) !!}" download="qrcode" class="btn btn-primary mt-2">Download</a>
 				</div>
 			</div>
 			<!-- <div class="modal-footer">
@@ -317,6 +324,5 @@
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
 @endsection

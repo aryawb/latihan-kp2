@@ -61,15 +61,15 @@ class DashboardController extends Controller
 	public function viewImage($id){
 		// $imageData= data_karyawan::all();
 		// return view('dashboard', compact('imageData'));
-		$data= DB::table('data_pegawai')->where('id','=', $id)->first();
-		// $id = Auth::user()->id;
+		$id = Auth::user()->id;
+		$user= DB::table('data_pegawai')->where('id','=', $id)->first();
 		$imageData = DB::table('data_karyawan')
 		->join('data_pegawai', 'data_pegawai.id', '=', 'data_karyawan.created_by')
 		->select('data_pegawai.id', 'data_pegawai.nama', 'data_karyawan.id', 'data_karyawan.data_file', 'data_karyawan.caption', 'data_karyawan.created_at', 'data_karyawan.created_by')
 		->where('data_karyawan.created_by', '=', $id)
 		->orderBy('data_karyawan.created_at', "desc")
 		->get();
-		return view('post', ['imageData' => $imageData])->with(['data' => $data]);
+		return view('post', ['imageData' => $imageData])->with(['user' => $user]);
 	}
 	public function pegawai()
 	{

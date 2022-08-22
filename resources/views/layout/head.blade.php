@@ -14,12 +14,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+	<!-- <link href="{{asset('assets/line.css')}}" rel="stylesheet" type="text/css"> -->
 	<link href="{{asset('assets/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('assets/css.css')}}" rel="stylesheet" type="text/css">
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="{{asset('assets/bootstrap.bundle.min')}}"></script>
+	<script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script>
+	
 </head>
-<body data-spy="scroll" onload="document.body.style.opacity='1'">
+<body onload="document.body.style.opacity='1'">
 	<aside class="sidebar">
 		<div class="sidebar-header px-auto">
 			<i class="uil uil-dashboard text-white"></i>
@@ -49,7 +50,7 @@
 			$('.custom-file-label').html(fileName);
 		});
 	</script> -->
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="{{asset('assets/bootstrap.bundle.min')}}"></script>
+	<script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script>
+	<script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
 </body>
 </html>
