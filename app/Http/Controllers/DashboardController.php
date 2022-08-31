@@ -13,17 +13,17 @@ class DashboardController extends Controller
 	protected $storage;
 
 	public function __construct(){
+
 		$this->storage = Storage::disk('public');
 	}
 	public function index($id)
 	{
-		// $id = Auth::user()->id;
-		$data= DB::table('data_pegawai')->where('id','=', $id)->first();
+		$data = DB::table('data_pegawai')->where('id','=', $id)->first();
 		$imageData = DB::table('data_karyawan')->where('created_by','=', $id)->orderBy("created_at", "desc")->get();
 		$qr = \QrCode::size(290)->generate(\Request::url());
 		\QrCode::generate(\Request::url(), public_path('images/qrcode.svg') );
 		if(!!$data && !!$imageData){
-			return view('dashboard',['data' => $data])->with(['imageData' => $imageData])->with(['qr' => $qr]);
+			return view('dashboard',['data' => $data])->with(['imageData' => $imageData]);
 		}
 		else
 		{
@@ -34,7 +34,7 @@ class DashboardController extends Controller
 	public function imageUploadPost(Request $request)
 	{       
 		$request->validate([
-			'caption' => 'required',
+			// 'caption' => 'required',
 			'filename' => 'required',
 			'filename.*' => 'mimes:doc,docx,PDF,pdf,jpg,jpeg,png|max:2000'
 		]);
@@ -59,17 +59,14 @@ class DashboardController extends Controller
 		}
 	}
 	public function viewImage($id){
-		// $imageData= data_karyawan::all();
-		// return view('dashboard', compact('imageData'));
-		$id = Auth::user()->id;
-		$user= DB::table('data_pegawai')->where('id','=', $id)->first();
+		$data= DB::table('data_pegawai')->where('id','=', $id)->first();
 		$imageData = DB::table('data_karyawan')
 		->join('data_pegawai', 'data_pegawai.id', '=', 'data_karyawan.created_by')
-		->select('data_pegawai.id', 'data_pegawai.nama', 'data_karyawan.id', 'data_karyawan.data_file', 'data_karyawan.caption', 'data_karyawan.created_at', 'data_karyawan.created_by')
+		->select('data_pegawai.id', 'data_pegawai.nama', 'data_pegawai.file_profile', 'data_pegawai.file_profile','data_karyawan.id', 'data_karyawan.data_file', 'data_karyawan.caption', 'data_karyawan.created_at', 'data_karyawan.created_by')
 		->where('data_karyawan.created_by', '=', $id)
 		->orderBy('data_karyawan.created_at', "desc")
 		->get();
-		return view('post', ['imageData' => $imageData])->with(['user' => $user]);
+		return view('post', ['imageData' => $imageData])->with(['data' => $data]);
 	}
 	public function pegawai()
 	{
@@ -85,6 +82,50 @@ class DashboardController extends Controller
 		// $pegawaiubah = data_pegawai::findOrFail($id);
 
 		return view('ubahpegawai', ['pegawaiubah' => $pegawaiubah])->with(['data' => $data]);
+	}
+	public function ubahpost($idpost)
+	{
+		$id = Auth::user()->id;
+		$data= DB::table('data_pegawai')->where('id','=', $id)->first();
+		$postubah = data_karyawan::select('*')
+		->where('id', $idpost)
+		->get();
+		// dd($postubah);
+		return view('ubahpost', ['postubah' => $postubah])->with(['data' => $data]);
+	}
+	public function updatepost(Request $request, $idpost)
+	{
+		$request->validate([
+			'caption'     => 'required',
+			'data_file'     => 'nullable'
+		]);
+		$id = Auth::user()->id;
+		$postubah = data_karyawan::find($idpost);
+
+		if (empty($request->data_file)) {
+			// dd('gambar ada');
+			$postubah->update([
+				'caption' => $request->caption
+			]);
+		} else if(empty($request->caption)){
+			// dd('tulisan ada');
+			$data_file = $request->data_file;
+			$datafile = $data_file->hashName();
+			$data_file->storeAs('public/images', $datafile);
+			$postubah->update([
+				'data_file' => $data_file->hashName()
+			]);
+		} else if(!!$request->data_file && !!$request->caption){
+			// dd('ada semua');
+			$data_file = $request->data_file;
+			$datafile = $data_file->hashName();
+			$data_file->storeAs('public/images', $datafile);
+			$postubah->update([
+				'caption' => $request->caption,
+				'data_file' => $data_file->hashName()
+			]);
+		}
+		return redirect()->route('dashboard', $id);
 	}
 	public function updatepegawai(Request $request)
 	{
@@ -164,18 +205,44 @@ class DashboardController extends Controller
 				'file_profile' => $file_profile->hashName(),
 				'file_sampul' => $file_sampul->hashName()
 			]);
-
-
 		}
-		// return redirect()->back()->with('alert', 'sukses');
-		// return redirect('dashboard');
 		return redirect()->route('dashboard', $id);
+
 	}
-	public function generate ()
-	{
-		\QrCode::size(500)
-		->generate(Request::url(), public_path('images/qrcode.png'));
-		return view('dashboard',$data);
+	public function deleteprofile(Request $request, $id) {
+
+		$profildel = data_pegawai::find($id);
+		if($profildel->file_profile){
+			Storage::delete('public/images/' . $profildel->file_profile);
+		}
+		$profildel->update([
+			$profildel->file_profile = null
+		]);
+		// data_pegawai::destroy($profildel->file_profile);
+		return redirect()->route('dashboard', $id);
+
+	}
+	public function deletesampul(Request $request, $id) {
+
+		$profildel = data_pegawai::find($id);
+		if($profildel->file_sampul){
+			Storage::delete('public/images/' . $profildel->file_sampul);
+		}
+		$profildel->update([
+			$profildel->file_sampul = null
+		]);
+		// data_pegawai::destroy($profildel->file_profile);
+		return redirect()->route('dashboard', $id);
+
+	}
+	public function deletepost(Request $request, $idpost) {
+
+		$postdel = data_karyawan::find($idpost);
+		if($postdel->data_file){
+			Storage::delete('public/images/' . $postdel->data_file);
+		}
+		data_karyawan::destroy($postdel->id);
+		return back();
 
 	}
 }

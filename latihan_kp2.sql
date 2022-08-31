@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2022 at 10:37 AM
+-- Generation Time: Aug 31, 2022 at 12:02 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `latihan_kp2`
+-- Database: `ikisample`
 --
 
 -- --------------------------------------------------------
@@ -29,31 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `data_karyawan` (
   `id` int(11) NOT NULL,
-  `data_file` varchar(255) NOT NULL,
-  `caption` text NOT NULL,
+  `data_file` varchar(255) DEFAULT NULL,
+  `caption` text DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_by` varchar(11) NOT NULL,
   `updated_by` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `data_karyawan`
---
-
-INSERT INTO `data_karyawan` (`id`, `data_file`, `caption`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, '1659689210252-michael-dam-mEZ3PoFGs_k-unsplash.jpg', 'bismillah', '2022-08-05 08:46:50', '2022-08-05 08:46:50', '1', '1'),
-(2, '1659689385051-toa-heftiba-O3ymvT7Wf9U-unsplash.jpg', 'alhamdulillah', '2022-08-05 08:49:45', '2022-08-05 08:49:45', '2', '2'),
-(3, '1659927937903-profile.jpg', 'dicoba aja', '2022-08-08 03:05:38', '2022-08-08 03:05:38', '1', '1'),
-(4, '1659928172898-michael-dam-mEZ3PoFGs_k-unsplash.jpg', 'dicoba lagi', '2022-08-08 03:09:32', '2022-08-08 03:09:32', '1', '1'),
-(5, '1659944215082-purbo.jpg', 'gagal', '2022-08-08 07:36:55', '2022-08-08 07:36:55', '1', '1'),
-(6, '1659945415570-toa-heftiba-O3ymvT7Wf9U-unsplash.jpg', 'akhirnya', '2022-08-08 07:56:55', '2022-08-08 07:56:55', '1', '1'),
-(7, '1660015539706-purbo2.jpg', 'dicoba lago dhe', '2022-08-09 03:25:39', '2022-08-09 03:25:39', '2', '2'),
-(8, '1660024681578-toa-heftiba-O3ymvT7Wf9U-unsplash.jpg', 'cek', '2022-08-09 05:58:01', '2022-08-09 05:58:01', '1', '1'),
-(9, '1660024699648-toa-heftiba-O3ymvT7Wf9U-unsplash.jpg', 'cek', '2022-08-09 05:58:19', '2022-08-09 05:58:19', '1', '1'),
-(10, '1660109991157-michael-dam-mEZ3PoFGs_k-unsplash.jpg', 'dicoba pokonya', '2022-08-10 05:39:51', '2022-08-10 05:39:51', '2', '2'),
-(14, '1660533957818-rayul-_M6gy9oHgII-unsplash.jpg', 'dicoba pokoknya', '2022-08-15 03:25:57', '2022-08-15 03:25:57', '1', '1'),
-(15, '1660550679922-Dedicated-server.jpg', 'dicoba upload lewat localhost', '2022-08-15 08:04:39', '2022-08-15 08:04:39', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -81,8 +63,8 @@ CREATE TABLE `data_pegawai` (
 --
 
 INSERT INTO `data_pegawai` (`id`, `nama`, `nik`, `email`, `alamat`, `jabatan`, `bio`, `file_profile`, `file_sampul`, `created_at`, `updated_at`, `created_by`) VALUES
-(1, 'Ujang Rodrigos', '2021010024111', 'arya@gmail.com', 'losangeles', 'Web Designer', 'Front End Developer', 'LD3P3IXtOWiHfXyosb9nJ37Xj4Eo5eUZgKICsjlK.jpg', 'StG2aERDBoPkfS54Mp9VqYJ0g3HSA6Zhpyroubof.jpg', '2022-07-29 06:24:20', '2022-08-14 20:15:35', 1),
-(2, 'Alexander Grah', '2021010024123', 'alex@gmail.com', 'lasvegas', 'Product Manager', 'i like theword', 'zQwyJ9HeHbbXcKGaaoDwfAOoqLZBgRLZMWuslw1b.jpg', 'gF3EuQEDRCU1czFST170rboK6owkpydQblVItIvC.jpg', '2022-08-01 23:14:27', '2022-08-08 07:21:28', 2);
+(1, 'Ujang Rodrigos', '2021010024111', 'arya@gmail.com', 'losangeles', 'Web Designer', 'Bismillah bos marmer', NULL, NULL, '2022-07-29 06:24:20', '2022-08-31 09:52:45', 1),
+(2, 'Alexander Grah', '2021010024123', 'alex@gmail.com', 'lasvegas', 'Product Manager', 'i like theword', NULL, NULL, '2022-08-01 23:14:27', '2022-08-31 09:52:34', 2);
 
 -- --------------------------------------------------------
 
@@ -236,7 +218,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `data_karyawan`
 --
 ALTER TABLE `data_karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `data_pegawai`

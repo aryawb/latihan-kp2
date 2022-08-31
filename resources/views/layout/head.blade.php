@@ -9,15 +9,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> -->
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 	<!-- <link href="{{asset('assets/line.css')}}" rel="stylesheet" type="text/css"> -->
 	<link href="{{asset('assets/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('assets/css.css')}}" rel="stylesheet" type="text/css">
-	<script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script>
+	<script src="{{asset('assets/jquery.slim.min.js')}}"></script>
+	<script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('assets/popper.min.js')}}"></script>
 	
 </head>
 <body onload="document.body.style.opacity='1'">
@@ -30,6 +32,7 @@
 				
 				<li class="nav-item">
 					<a href="/dashboard/{{$data->id}}" class="nav-link">
+
 						<div class="sidebar-icon">
 							<i class="uil uil-user"></i>
 						</div>
@@ -39,7 +42,6 @@
 			</ul>
 		</div>
 	</aside>
-	
 	<!-- As a link -->
 
 	@yield('content')
@@ -50,7 +52,8 @@
 			$('.custom-file-label').html(fileName);
 		});
 	</script> -->
-	<script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script>
+	<script src="{{asset('assets/jquery.slim.min.js')}}"></script>
 	<script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('assets/popper.min.js')}}"></script>
 </body>
 </html>

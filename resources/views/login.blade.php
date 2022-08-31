@@ -42,7 +42,7 @@
 			<div class="box">
 				<h2>Login</h2>
 				@if(session('error'))
-				<div class="alert alert-danger">
+				<div class="alert alert-danger mb-4">
 					<b>Opps!</b> {{session('error')}}
 				</div>
 				@endif

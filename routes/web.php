@@ -32,4 +32,8 @@ Route::post('pegawai/update', [DashboardController::class, 'updatepegawai'])->na
 Route::post('download-qr-code/{type}', [DashboardController::class, 'downloadQRCode'])->name('qrcode.download');
 
 Route::get('/post/view/{created_by}', [DashboardController::class, 'viewImage'])->name('post');
-
+Route::get('post/ubah/{idpost}', [DashboardController::class, 'ubahpost']);
+Route::post('post/update/{idpost}', [DashboardController::class, 'updatepost'])->name('updatepost')->middleware('auth');
+Route::delete("delete/{idpost}", [DashboardController::class, "deletepost"])->name("delete");
+Route::post("deleteprofile/{id}", [DashboardController::class, "deleteprofile"])->name("deleteprofile");
+Route::post("deletesampul/{id}", [DashboardController::class, "deletesampul"])->name("deletesampul");

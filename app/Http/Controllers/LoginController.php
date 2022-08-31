@@ -30,7 +30,7 @@ class LoginController extends Controller
             // return redirect()->intended('dashboard/',[$id]);
             return redirect()->route('dashboard', $id);
         }	
-        return back()->with('error','loginfailed');
+        return back()->with('error','login gagal');
     }
     //aksilogout
     public function actionlogout()
