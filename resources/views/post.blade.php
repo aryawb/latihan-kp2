@@ -1,7 +1,7 @@
 @extends('layout.head')	
 @section('content')
 <!-- data-spy="scroll" data-target="#navbarExample" data-offset="50" -->
-<main class="main" >
+<main class="main">
 	<div class="container-fluid">
 		<div class="row justify-content-center align-items-center">
 			<div class="box-post">
@@ -31,6 +31,7 @@
 									@endif
 									<span class="font-weight-bold">{{$datapost->nama}}</span>
 								</div>
+								@if(Auth::user())
 								<div class="dots-post">
 									<div class="dropdown">
 										<a type="button" class="dropdown-toggle" data-toggle="dropdown">
@@ -47,9 +48,27 @@
 										</div>
 									</div>
 								</div>
+								@else
+								<div class="dots-post d-none">
+									<div class="dropdown">
+										<a type="button" class="dropdown-toggle" data-toggle="dropdown">
+											<i class="uil uil-ellipsis-v"></i>
+										</a>
+										<div class="dropdown-menu">
+											<a href="/post/ubah/{{$datapost->id}}" class="d-flex align-items-center mobile-edit" style="color: #3F4658;"><i class="uil uil-edit text-success"></i>&nbsp;Edit</a>
+											<div class="dropdown-divider my-1"></div>
+											<form action="{{route('delete', $datapost->id)}}" method="post">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="d-flex align-items-center bg-transparent border-0" style="color: #3F4658;"><i class="uil uil-trash-alt text-danger"></i></i>&nbsp;Hapus</button>
+											</form>
+										</div>
+									</div>
+								</div>
+								@endif
 							</div>
 							<div class="v-img-post">
-								<img src="{{ Storage::url('images/' .$datapost->data_file)}}" alt="" class="img-fluid">
+								<img src="{{ Storage::url('images/' .$datapost->data_file)}}" alt="" class="img-fluid" loading="lazy">
 							</div>
 							<div class="date-post">
 								<p>Work At&nbsp;<span class="label-post">BURNINGROOM TECHNOLOGY</span></p>

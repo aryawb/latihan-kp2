@@ -35,8 +35,8 @@
 		<div class="display-box-login">
 			<div class="box-logo-login">
 				<div class="logo-login">
-					<img src="{{asset('img/logo-br.png')}}" class="logo" alt="">
-					<img src="{{asset('img/logo-br-hp.png')}}" class="logo-hp" alt="">
+					<img src="{{asset('img/LOGO BURNINGROOM 2020 - PNG 2.png')}}" class="logo" alt="">
+					<img src="{{asset('img/LOGO BURNINGROOM 2020 - PNG WHITE ALL.png')}}" class="logo-hp" alt="">
 				</div>
 			</div>
 			<div class="box">

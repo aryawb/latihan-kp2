@@ -20,14 +20,12 @@ class DashboardController extends Controller
 	{
 		$data = DB::table('data_pegawai')->where('id','=', $id)->first();
 		$imageData = DB::table('data_karyawan')->where('created_by','=', $id)->orderBy("created_at", "desc")->get();
-		$qr = \QrCode::size(290)->generate(\Request::url());
-		\QrCode::generate(\Request::url(), public_path('images/qrcode.svg') );
 		if(!!$data && !!$imageData){
 			return view('dashboard',['data' => $data])->with(['imageData' => $imageData]);
 		}
 		else
 		{
-			return view('post');
+			return view('dashboard');
 		}
 	}
 
@@ -96,7 +94,7 @@ class DashboardController extends Controller
 	public function updatepost(Request $request, $idpost)
 	{
 		$request->validate([
-			'caption'     => 'required',
+			'caption'     => 'nullable',
 			'data_file'     => 'nullable'
 		]);
 		$id = Auth::user()->id;
@@ -125,7 +123,9 @@ class DashboardController extends Controller
 				'data_file' => $data_file->hashName()
 			]);
 		}
-		return redirect()->route('dashboard', $id);
+		$idgambar = $postubah->id;
+		// dd($idgambar);
+		return redirect()->route('post', $id)->withFragment($idgambar);
 	}
 	public function updatepegawai(Request $request)
 	{
