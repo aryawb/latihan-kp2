@@ -742,12 +742,14 @@ a{
 	.box-post header{
 		position: fixed;
 		top: 0;
-		width: 47.7rem;
+		width: 48.3rem;
 		transition: .5s;
 		z-index: 999;
 		display: flex;
+		padding: 0 0 0 8px;
 		align-items: center;
 		box-sizing: border-box;
+		background: #fff;
 	}
 	header.black{
 		z-index: 999;
@@ -771,11 +773,11 @@ a{
 	.box-post .card{
 		background: #fff;
 		border: none;
-		border-radius: 10px;
+		border-radius: 0 0 10px 10px;
 		margin: 0 0 16px 0;
 	}
 	.box-post .card-body{
-		padding: 12px;
+		padding: 0 12px 12px 12px;
 	}
 	.box-post .post-body{
 		padding: 16px 0;

@@ -242,7 +242,9 @@ class DashboardController extends Controller
 			Storage::delete('public/images/' . $postdel->data_file);
 		}
 		data_karyawan::destroy($postdel->id);
-		return back();
+		// return back();
+		$id = Auth::user()->id;
+		return redirect()->route('dashboard', $id);
 
 	}
 }

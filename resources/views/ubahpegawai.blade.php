@@ -74,7 +74,6 @@
 											<div class="input-group-append">
 												<!-- <form action="{{route('deletesampul', $data->id)}}" method="post"> -->
 													@csrf
-
 													@if($ubah->file_sampul)
 													<button type="submit" formaction="{{route('deletesampul', $data->id)}}" formmethod="post" class=" align-items-center border-0 btn btn-danger" style="color: #3F4658;"><i class="uil uil-multiply text-white"></i></button>
 													@else
@@ -110,7 +109,7 @@
 				</div>
 			</div>
 		</main>
-		<script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script>
+		<!-- <script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script> -->
 		<script>
 			$('#inputGroupFile01').on('change',function(){
                 //get the file name
