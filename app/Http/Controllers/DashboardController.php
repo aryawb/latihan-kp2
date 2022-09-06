@@ -219,7 +219,7 @@ class DashboardController extends Controller
 			$profildel->file_profile = null
 		]);
 		// data_pegawai::destroy($profildel->file_profile);
-		return redirect()->route('dashboard', $id);
+		// return redirect()->route('dashboard', $id);
 
 	}
 	public function deletesampul(Request $request, $id) {
@@ -232,7 +232,8 @@ class DashboardController extends Controller
 			$profildel->file_sampul = null
 		]);
 		// data_pegawai::destroy($profildel->file_profile);
-		return redirect()->route('dashboard', $id);
+		// return redirect()->route('dashboard', $id);
+		// return response('sampul deleted successfully.', 200);
 
 	}
 	public function deletepost(Request $request, $idpost) {

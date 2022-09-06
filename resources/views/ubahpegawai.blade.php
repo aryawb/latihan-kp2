@@ -35,7 +35,14 @@
 										<input type="file" class="form-control" name="file_profile" value="{{$ubah->file_profile}}">
 									</div> -->
 									<div class="form-group">
-										<label for="">Foto Profil</label>
+										<div class="d-flex justify-content-between align-items-center w-100">	
+											<label for="">Foto Profil</label>
+											@csrf
+											@if($ubah->file_profile)
+											<a href="{{ route('deleteprofile',$data->id) }}" class="align-items-center border-0 btn btn-danger text-white mb-1" style="color: #3F4658;" id="deleteprofile" data-id="{{ $data->id }}">Hapus Foto</a>
+											@else
+											@endif
+										</div>
 										<div class="input-group mb-3">
 											<div class="custom-file">
 												<input type="file" class="custom-file-input" name="file_profile" id="inputGroupFile01" value="{{$ubah->file_profile}}" />
@@ -45,13 +52,13 @@
 											</div>
 											<div class="input-group-append">
 												<!-- <form action="{{route('deleteprofile', $data->id)}}" method="post"> -->
-													@csrf
+													<!-- @csrf
 
 													@if($data->file_profile)
 													<button type="submit" formaction="{{route('deleteprofile', $data->id)}}" formmethod="post" class="align-items-center btn btn-danger border-0" style="color: #3F4658;"><i class="uil uil-multiply text-white"></i></button>
 													@else
 													<button type="submit" formaction="{{route('deleteprofile', $data->id)}}" class="d-none align-items-center btn-danger border-0" style="color: #3F4658;"><i class="uil uil-multiply text-danger"></i></i></button>
-													@endif
+													@endif -->
 													<!-- </form> -->
 												</div>
 											</div>
@@ -63,7 +70,14 @@
 										<input type="file" class="form-control" name="file_sampul" value="{{$ubah->file_sampul}}">
 									</div> -->
 									<div class="form-group">
-										<label for="">Foto Sampul</label>
+										<div class="d-flex justify-content-between align-items-center w-100">	
+											<label for="">Foto Sampul</label>
+											@csrf
+											@if($ubah->file_sampul)
+											<a href="{{ route('deletesampul',$data->id) }}" class="align-items-center border-0 btn btn-danger text-white mb-1" style="color: #3F4658;" id="deletesampul" data-id="{{ $data->id }}">Hapus Foto</a>
+											@else
+											@endif
+										</div>
 										<div class="input-group mb-3">
 											<div class="custom-file">
 												<input type="file" class="custom-file-input" name="file_sampul" id="inputGroupFile02" value="{{$ubah->file_sampul}}" />
@@ -73,13 +87,11 @@
 											</div>
 											<div class="input-group-append">
 												<!-- <form action="{{route('deletesampul', $data->id)}}" method="post"> -->
-													@csrf
-													@if($ubah->file_sampul)
-													<button type="submit" formaction="{{route('deletesampul', $data->id)}}" formmethod="post" class=" align-items-center border-0 btn btn-danger" style="color: #3F4658;"><i class="uil uil-multiply text-white"></i></button>
-													@else
-													<button type="submit" formaction="{{route('deletesampul', $data->id)}}" class="d-none align-items-center border-0 btn btn-danger" style="color: #3F4658;"><i class="uil uil-multiply text-white"></i></button>
+													<!-- <a href="{{ route('deletesampul',$data->id) }}" class="align-items-center border-0 btn btn-danger" style="color: #3F4658;" id="deletesampul" data-id="{{ $data->id }}"><i class="uil uil-multiply text-white"></i></a> -->
 													<!-- </form> -->
-													@endif
+													<!-- <a href="{{ route('deletesampul',$data->id) }}" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" id="deletesampul" data-id="{{ $data->id }}">
+														Delete
+													</a> -->
 												</div>
 											</div>
 										</div>
@@ -109,7 +121,7 @@
 				</div>
 			</div>
 		</main>
-		<!-- <script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script> -->
+		<!-- <script src="{{asset('assets/jquery-3.6.1.min.js')}}"></script> -->
 		<script>
 			$('#inputGroupFile01').on('change',function(){
                 //get the file name
@@ -150,5 +162,58 @@
 			result.style.color = "#737373";
 		}
 	});
-</script>
-@endsection
+			$(document).ready(function () {
+				$("body").on("click","#deletesampul",function(e){
+					if(!confirm("Do you really want to do this?")) {
+						return false;
+					}
+					e.preventDefault();
+					var id = $(this).data("id");
+    // var id = $(this).attr('data-id');
+    var token = $("meta[name='csrf-token']").attr("content");
+    var url = e.target;
+    $.ajax(
+    {
+          url: url.href, //or you can use url: "company/"+id,
+          type: 'POST',
+          data: {
+          	_token: token,
+          	id: id
+          },
+          success: function (response){
+          	window.location.href = "/dashboard/"+id;
+          }
+      });
+    return false;
+});	
+			});
+
+			$(document).ready(function () {
+				$("body").on("click","#deleteprofile",function(e){
+					if(!confirm("Do you really want to do this?")) {
+						return false;
+					}
+					e.preventDefault();
+					var id = $(this).data("id");
+    // var id = $(this).attr('data-id');
+    var token = $("meta[name='csrf-token']").attr("content");
+    var url = e.target;
+    $.ajax(
+    {
+          url: url.href, //or you can use url: "company/"+id,
+          type: 'POST',
+          data: {
+          	_token: token,
+          	id: id
+          },
+          success: function (response){
+          	window.location.href = "/dashboard/"+id;
+          	// location.replace('dashboard')
+          }
+      });
+    return false;
+});	
+			});
+		</script>
+
+		@endsection
