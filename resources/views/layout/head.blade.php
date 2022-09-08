@@ -23,7 +23,8 @@
 	<script src="{{asset('assets/popper.min.js')}}"></script>
 	
 </head>
-<body onload="document.body.style.opacity='1'">
+<!-- onload="document.body.style.opacity='1'" -->
+<body>
 	<aside class="sidebar">
 		<div class="sidebar-header px-auto">
 			<i class="uil uil-dashboard text-white"></i>

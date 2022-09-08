@@ -1,7 +1,7 @@
 {
     "name": "Aplikasi Karyawan",
     "short_name": "Aplikasi Karyawan",
-    "start_url": "tugasarya.burningroom.co.id",
+    "start_url": "https://tugasarya.burningroom.co.id/",
     "background_color": "#03a9f4",
     "description": "Aplikasi Karyawan Arya",
     "display": "fullscreen",

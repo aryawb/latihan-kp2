@@ -23,7 +23,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@0,400;0,500;1,500&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 	<link href="{{asset('assets/css.css')}}" rel="stylesheet" type="text/css">
-	<script src="{{asset('assets/jquery-3.6.0.min.js')}}"></script>
+	<script src="{{asset('assets/jquery-3.6.1.min.js')}}"></script>
 	<script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
 </head>
 <body onload="document.body.style.opacity='1'">
