@@ -340,7 +340,7 @@
 								<div class="body-post flex-wrap" >
 									@foreach($imageData as $dataimage)
 									<div class="post-foto">
-										<a href="/post/view/{{$dataimage->created_by}}#{{$dataimage->id}}" >
+										<a href="/post/view/{{$dataimage->created_by}}#{{$dataimage->id}}" id="buynwa">
 											<img src="{{ Storage::url('images/' .$dataimage->data_file)}}" loading="lazy" alt="" class="img-fluid">
 										</a>
 									</div>
@@ -479,9 +479,14 @@
 			result.style.color = "#737373";
 		}
 	});
-</script>
+		jQuery(document).ready(function($) {
+			$("#buynwa").on("touchstart", function(event) {
+				window.location.href = $(event.target).attr('href');
+			});
+		});
+	</script>
 
-<script src="{{asset('assets/jquery.slim.min.js')}}"></script>
-<script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('assets/jquery.slim.min.js')}}"></script>
+	<script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
 
-@endsection
+	@endsection
